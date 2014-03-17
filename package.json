@@ -1,0 +1,27 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "jade": "*",
+    "exchanger": "~0.1.1",
+    "passport-local": "~1.0.0",
+    "passport": "~0.2.0",
+    "winston": "~0.7.2",
+    "connect-mongo": "~0.4.0",
+    "mongoose": "~3.8.8",
+    "bcrypt-nodejs": "0.0.3"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-nodeunit": "*",
+    "grunt-coffeelint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-nodemon": "^0.2.1",
+    "grunt-shell-spawn": "^0.3.0"
+  }
+}
