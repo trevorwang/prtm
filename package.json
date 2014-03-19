@@ -14,7 +14,14 @@
     "winston": "~0.7.2",
     "connect-mongo": "~0.4.0",
     "mongoose": "~3.8.8",
-    "bcrypt-nodejs": "0.0.3"
+    "bcrypt-nodejs": "0.0.3",
+    "express-promise": "~0.1.9",
+    "mongoose-auto-increment": "~3.0.1",
+    "html-to-text": "0.0.8",
+    "mailparser": "~0.4.1",
+    "async": "~0.2.10",
+    "npm": "~1.4.4",
+    "install": "~0.1.7"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "*",

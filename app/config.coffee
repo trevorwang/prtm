@@ -1,5 +1,6 @@
 path = require 'path'
 mongoose = require 'mongoose'
+promise = require 'express-promise'
 LocalStrategy = require('passport-local').Strategy
 User = require './models/user'
 logger = require './logger'
@@ -8,7 +9,7 @@ class Config
   constructor: (@app, @express, @passport)->
     @dbUrl = 'mongodb://localhost/passport'
   init: ->
-    # mongoose.connect @dbUrl
+    mongoose.connect @dbUrl
     # MongoStore = require('connect-mongo')(@express)
     # @mongoStore = new MongoStore
     #   mongoose_connection: mongoose.connection
@@ -34,6 +35,7 @@ class Config
     @app.use @express.methodOverride()
     @app.use @express.cookieParser()
     @app.use @express.bodyParser()
+    @app.use promise()
     # @app.use @express.session @sessionOptions
     # @app.use @passport.initialize()
     # @app.use @passport.session()
