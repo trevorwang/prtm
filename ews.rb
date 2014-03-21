@@ -47,18 +47,21 @@ def save_attachments(mail)
 	atts = mail.attachments || []
 	for att in atts
 		is_file = att.instance_of?(Viewpoint::EWS::Types::FileAttachment)
-		save_to_file att if is_file
-		attachments << {
-			:is_file			=>	is_file,
-			:content_id			=>  att.content_id,
-			:file_name			=>	is_file ? att.file_name : nil,
-			:content_type 		=>	att.content_type,
-			:size				=> 	att.size,
-			:parent_change_key	=> 	att.parent_change_key,
-			:parent_item_id		=>	att.parent_item_id,
-			:is_inline			=>  att.is_inline?,
-			:is_contact_photo	=>	is_file ? att.is_contact_photo? : false
-		}
+		if is_file
+			parent_path = save_to_file att
+			attachments << {
+				:is_file			=>	is_file,
+				:content_id			=>  att.content_id,
+				:file_name			=>	is_file ? att.file_name : nil,
+				:content_type 		=>	att.content_type,
+				:size				=> 	att.size,
+				:parent_change_key	=> 	att.parent_change_key,
+				:parent_item_id		=>	att.parent_item_id,
+				:is_inline			=>  att.is_inline?,
+				:is_contact_photo	=>	is_file ? att.is_contact_photo? : false,
+				:parent_path		=>	parent_path
+			}
+		end
 	end
 	return attachments
 end
@@ -94,15 +97,16 @@ end
 
 # write attachment file to disk
 def save_to_file(attachment)
-	puts attachment
-	filePath = File.join get_file_path(Time.new.strftime('%Y%m%d')), attachment.name
+	parent_path = Time.new.strftime('%Y%m%d')
+	filePath = File.join get_file_path(parent_path), attachment.name
 	File.open(filePath, "w+") do |f|
 		f.write Base64.decode64(attachment.content)
 	end
+	return parent_path
 end
 
-def get_file_path(relative_path)
-  	path =  File.join $attachments_absolute_dir, relative_path
+def get_file_path(parent_path)
+  	path =  File.join $attachments_absolute_dir, parent_path
   	unless File.directory?(path)
         FileUtils.mkdir_p path
   	end
