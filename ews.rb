@@ -103,6 +103,7 @@ def save_to_file(attachment)
 		File.open(filePath, "w+") do |f|
 			f.write Base64.decode64(attachment.content)
 		end
+	end
 	return parent_path
 end
 
