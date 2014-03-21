@@ -1,0 +1,11 @@
+{
+  "name": "box.mings.in",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "*",
+    "bootstrap": "*",
+    "bootstrap-switch":"*"
+  },
+  "devDependencies": {
+  }
+}
