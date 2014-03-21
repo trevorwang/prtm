@@ -54,7 +54,7 @@ def save_attachments(mail)
 				:content_id			=>  att.content_id,
 				:file_name			=>	is_file ? att.file_name : nil,
 				:content_type 		=>	att.content_type,
-				:size				=> 	attachment.content ? att.size : 0,
+				:size				=> 	att.content ? att.size : 0,
 				:parent_change_key	=> 	att.parent_change_key,
 				:parent_item_id		=>	att.parent_item_id,
 				:is_inline			=>  att.is_inline?,
