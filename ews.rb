@@ -54,7 +54,7 @@ def save_attachments(mail)
 				:content_id			=>  att.content_id,
 				:file_name			=>	is_file ? att.file_name : nil,
 				:content_type 		=>	att.content_type,
-				:size				=> 	att.size,
+				:size				=> 	attachment.content ? att.size : 0,
 				:parent_change_key	=> 	att.parent_change_key,
 				:parent_item_id		=>	att.parent_item_id,
 				:is_inline			=>  att.is_inline?,
@@ -99,9 +99,10 @@ end
 def save_to_file(attachment)
 	parent_path = Time.new.strftime('%Y%m%d')
 	filePath = File.join get_file_path(parent_path), attachment.name
-	File.open(filePath, "w+") do |f|
-		f.write Base64.decode64(attachment.content)
-	end
+	if attachment.content
+		File.open(filePath, "w+") do |f|
+			f.write Base64.decode64(attachment.content)
+		end
 	return parent_path
 end
 
