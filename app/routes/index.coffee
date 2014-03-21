@@ -4,7 +4,6 @@ prt = new Prt
 
 class Router
   constructor: (@app, @passport)->
-
   # express router
   express: ->
     @app.get "/", (req, res) ->
